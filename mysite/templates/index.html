@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>资源巡检</title>
+		<meta name="description" content="资源巡检" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <link rel="stylesheet" href="../static/css/ace.onpage-help.css" />
+        <link rel="stylesheet" href="../static/css/bootstrap.css" />
+		<link rel="stylesheet" href="../static/css/font-awesome.css" />
+		<link rel="stylesheet" href="../static/css/ace-fonts.css" />
+		<link rel="stylesheet" href="../static/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+        <link rel="stylesheet" href="../static/css/ace-part2.css" class="ace-main-stylesheet" />
+        <link rel="stylesheet" href="../static/css/ace-ie.css" />
+	</head>
+	<body class="no-skin">
+		<div id="navbar" class="navbar navbar-default"  style=" height: 45px;">
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-leaf"></i>
+							医学信息中心
+						</small>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="main-container" id="main-container">
+            <div id="sidebar" class="sidebar responsive">
+				<ul class="nav nav-list">
+					<li class="">
+						<a href="index.html">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text">  </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-desktop"></i>
+							<span class="menu-text">
+							   资源巡检
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<b class="arrow"></b>
+						<ul class="submenu">
+							<li class="">
+								<a href="#" class="dropdown-toggle">
+									<i class="menu-icon fa fa-caret-right"></i>
+									资源巡检
+									<b class="arrow fa fa-angle-down"></b>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+			</div>
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								资源巡检
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+								服务器内存硬盘进程实施监控
+								</small>
+							</h1>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="row">
+									<div class="col-xs-12">
+										<div>
+											<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+												<thead>
+																<tr>
+																	<th>Ip</th>
+																	<th>系统时间</th>
+																	<th>开机时间</th>
+																	<th >Cpu逻辑个数</th>
+																	<th >Cpu物理个数</th>
+																	<th >Cpu使用率</th>
+																	<th>硬盘总容量</th>
+																	<th>硬盘使用百分比</th>
+																	<th>内存大小</th>
+																	<th>剩余内存</th>
+																	<th>内存使用率</th>
+																	<th>状态</th>
+																</tr>
+													</thead>
+													<tbody>
+                                 {% for row in psutilData %}
+																	<tr>
+																		<td>{{ row.ip }}</td>
+																		<td>{{ row.sysDate }}</td>
+																		<td >{{ row.sysOpenDate }}</td>
+																		<td>{{ row.cpuLineCity }}</td>
+																		<td>{{ row.cpuCore }}</td>
+																		<td><span>{{ row.cpuPer }}</span> </td>
+																		<td>{{ row.allRam}}</td>
+																		 <td>	<span>{{ row.perRam }}</span></td>
+																		<td>{{ row.allStorage }}</td>
+																		<td>{{ row.remainStorage }}</td>
+																		<td><span>{{ row.perStorage }}</span></td>
+																		<td >
+																					{% if row.state == '0' %}
+																							<span class="label label-sm label-success">normal</span>
+																						{% else %}
+																							<span class="label label-sm label-warning">warning</span>
+																						{% endif %}
+																		</td>
+																		
+                            	      {% endfor %}
+													   			 </tr>
+														</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+						window.jQuery || document.write("<script src='../static/js/jquery.js'>"+"<"+"/script>");
+		</script>
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='../static/js/jquery.js'>"+"<"+"/script>");
+		</script>
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='../static/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+		</script>
+		<script src="../static/js/bootstrap.js"></script>
+		<script src="../static/js/dataTables/jquery.dataTables.js"></script>
+		<script src="../static/js/dataTables/jquery.dataTables.bootstrap.js"></script>
+		<script src="../static/js/dataTables/extensions/buttons/dataTables.buttons.js"></script>
+		<script src="../static/js/dataTables/extensions/buttons/buttons.flash.js"></script>
+		<script src="../static/js/dataTables/extensions/buttons/buttons.html5.js"></script>
+		<script src="../static/js/dataTables/extensions/buttons/buttons.print.js"></script>
+		<script src="../static/js/dataTables/extensions/buttons/buttons.colVis.js"></script>
+		<script src="../static/js/dataTables/extensions/select/dataTables.select.js"></script>
+		<script src="../static/js/ace/elements.scroller.js"></script>
+		<script src="../static/js/ace/elements.colorpicker.js"></script>
+		<script src="../static/js/ace/elements.fileinput.js"></script>
+		<script src="../static/js/ace/elements.typeahead.js"></script>
+		<script src="../static/js/ace/elements.wysiwyg.js"></script>
+		<script src="../static/js/ace/elements.spinner.js"></script>
+		<script src="../static/js/ace/elements.treeview.js"></script>
+		<script src="../static/js/ace/elements.wizard.js"></script>
+		<script src="../static/js/ace/elements.aside.js"></script>
+		<script src="../static/js/ace/ace.js"></script>
+		<script src="../static/js/ace/ace.ajax-content.js"></script>
+		<script src="../static/js/ace/ace.touch-drag.js"></script>
+		<script src="../static/js/ace/ace.sidebar.js"></script>
+		<script src="../static/js/ace/ace.sidebar-scroll-1.js"></script>
+		<script src="../static/js/ace/ace.submenu-hover.js"></script>
+		<script src="../static/js/ace/ace.widget-box.js"></script>
+		<script src="../static/js/ace/ace.settings.js"></script>
+		<script src="../static/js/ace/ace.settings-rtl.js"></script>
+		<script src="../static/js/ace/ace.settings-skin.js"></script>
+		<script src="../static/js/ace/ace.widget-on-reload.js"></script>
+		<script src="../static/js/ace/ace.searchbox-autocomplete.js"></script>
+		<script src="../static/js/ace/ace.onpage-help.js"></script>
+		<script src="../static/js/ace-extra.js"></script>
+		<script src="../static/js/html5shiv.js"></script>
+		<script src="../static/js/respond.js"></script>
+    <script type="text/javascript">
+			jQuery(function($) {
+			var myTable =
+				$('#dynamic-table')
+				.DataTable( {
+					bAutoWidth: false,
+					"aoColumns": [
+					  { "bSortable": false },
+					  null, null,null, null, null, null, null, null, null, null,null,null,null,
+					  { "bSortable": false }
+					],
+					"aaSorting": [],
+					select: {
+						style: 'multi'
+					}
+			    } );
+				$.fn.dataTable.Buttons.swfPath = "../static/js/dataTables/extensions/buttons/swf/flashExport.swf"; //in Ace demo ../static will be replaced by correct static path
+				$.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+				new $.fn.dataTable.Buttons( myTable, {
+					buttons: [
+					  {
+						"extend": "colvis",
+						"text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
+						"className": "btn btn-white btn-primary btn-bold",
+						columns: ':not(:first):not(:last)'
+					  },
+					  {
+						"extend": "copy",
+						"text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "csv",
+						"text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "excel",
+						"text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "pdf",
+						"text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "print",
+						"text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
+						"className": "btn btn-white btn-primary btn-bold",
+						autoPrint: false,
+						message: 'This print was produced using the Print button for DataTables'
+					  }
+					]
+				} );
+				myTable.buttons().container().appendTo( $('.tableTools-container') );
+				var defaultCopyAction = myTable.button(1).action();
+				myTable.button(1).action(function (e, dt, button, config) {
+					defaultCopyAction(e, dt, button, config);
+					$('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
+				});
+				var defaultColvisAction = myTable.button(0).action();
+				myTable.button(0).action(function (e, dt, button, config) {
+					defaultColvisAction(e, dt, button, config);
+					if($('.dt-button-collection > .dropdown-menu').length == 0) {
+						$('.dt-button-collection')
+						.wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+						.find('a').attr('href', '#').wrap("<li />")
+					}
+					$('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+				});
+				setTimeout(function() {
+					$($('.tableTools-container')).find('a.dt-button').each(function() {
+						var div = $(this).find(' > div').first();
+						if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+						else $(this).tooltip({container: 'body', title: $(this).text()});
+					});
+				}, 500);
+				myTable.on( 'select', function ( e, dt, type, index ) {
+					if ( type === 'row' ) {
+						$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
+					}
+				} );
+				myTable.on( 'deselect', function ( e, dt, type, index ) {
+					if ( type === 'row' ) {
+						$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
+					}
+				} );
+				$('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
+				$('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
+					var th_checked = this.checked;//checkbox inside "TH" table header
+
+					$('#dynamic-table').find('tbody > tr').each(function(){
+						var row = this;
+						if(th_checked) myTable.row(row).select();
+						else  myTable.row(row).deselect();
+					});
+				});
+				$('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
+					var row = $(this).closest('tr').get(0);
+					if(!this.checked) myTable.row(row).deselect();
+					else myTable.row(row).select();
+				});
+				$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
+					e.stopImmediatePropagation();
+					e.stopPropagation();
+					e.preventDefault();
+				});
+				var active_class = 'active';
+				$('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
+					var th_checked = this.checked;//checkbox inside "TH" table header
+					$(this).closest('table').find('tbody > tr').each(function(){
+						var row = this;
+						if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+						else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
+					});
+				});
+				$('#simple-table').on('click', 'td input[type=checkbox]' , function(){
+					var $row = $(this).closest('tr');
+					if(this.checked) $row.addClass(active_class);
+					else $row.removeClass(active_class);
+				});
+				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+                function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('table')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+					var off2 = $source.offset();
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			})
+		</script>
+	</body>
+</html>
